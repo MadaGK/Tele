@@ -1,0 +1,21 @@
+# Sample sensor configuration
+# Loaded by the sensor simulator (client/) at startup.
+# TODO: complete the schema and add at least three sensors.
+
+server:
+  host: # TODO  e.g. 127.0.0.1
+  port: # TODO  e.g. 9000  (TCP ingest port)
+
+sensors:
+  - id: # TODO   unique sensor id
+    type: # TODO   one of: temperature | humidity | soil_moisture | light
+    interval_seconds: # TODO   reporting cadence
+    # add any additional per-sensor fields you need (range, location, etc.)
+
+  - id: # TODO
+    type: # TODO
+    interval_seconds: # TODO
+
+  - id: # TODO
+    type: # TODO
+    interval_seconds: # TODO
