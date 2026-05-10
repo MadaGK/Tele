@@ -6,8 +6,10 @@ broadcaster.
 """
 from __future__ import annotations
 
+import json
 
-async def live(websocket, path: str) -> None:
+
+async def live(websocket, path: str | None = None, broadcaster=None) -> None:
     """Handle one WebSocket client connection.
 
     Protocol on this socket (JSON frames):
@@ -16,7 +18,22 @@ async def live(websocket, path: str) -> None:
       Server -> Client (continuous):
           {"sensor_id": "...", "type": "...", "value": ..., "ts": ...}
     """
-    # TODO: register this client with the Broadcaster
-    # TODO: read incoming subscription messages and update filters
-    # TODO: on disconnect, unregister cleanly
-    raise NotImplementedError
+    if broadcaster is None:
+        raise RuntimeError("Broadcaster instance is required")
+
+    await broadcaster.register(websocket)
+    try:
+        async for message in websocket:
+            if isinstance(message, bytes):
+                continue
+
+            try:
+                data = json.loads(message)
+            except json.JSONDecodeError:
+                continue
+
+            if data.get("action") == "subscribe":
+                sensors = data.get("sensors")
+                await broadcaster.set_subscription(websocket, sensors)
+    finally:
+        await broadcaster.unregister(websocket)

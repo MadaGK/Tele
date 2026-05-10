@@ -17,9 +17,26 @@ syntax = "proto3";
 package telemetry;
 
 message Reading {
-  // TODO: declare fields with sensible numbering
+  string sensor_id = 1;
+  int64 timestamp = 2;
+  ReadingType reading_type = 3;
+  float value = 4;
 }
 
 message SensorRegistration {
-  // TODO: declare fields
+  string sensor_id = 1;
+  string name = 2;
+  string location = 3;
+  repeated ReadingType reading_type = 4;
+  int32 reporting_interval = 5;
+  int64 registered_at = 6;
+}
+
+enum ReadingType {
+  READING_TYPE_UNSPECIFIED = 0;
+  TEMPERATURE = 1;
+  HUMIDITY = 2;
+  SOIL_MOISTURE = 3;
+  LIGHT = 4;
+  PRESSURE = 5;
 }

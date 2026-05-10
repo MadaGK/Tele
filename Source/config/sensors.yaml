@@ -3,19 +3,30 @@
 # TODO: complete the schema and add at least three sensors.
 
 server:
-  host: # TODO  e.g. 127.0.0.1
-  port: # TODO  e.g. 9000  (TCP ingest port)
+  host: 127.0.0.1
+  port:  9999
 
 sensors:
-  - id: # TODO   unique sensor id
-    type: # TODO   one of: temperature | humidity | soil_moisture | light
-    interval_seconds: # TODO   reporting cadence
-    # add any additional per-sensor fields you need (range, location, etc.)
+  - sensor_id: "gh-a-temp-01"
+    name: "Greenhouse A - Temperature"
+    sensor_type: temperature
+    location: "Greenhouse A"
+    reporting_interval: 15
 
-  - id: # TODO
-    type: # TODO
-    interval_seconds: # TODO
+  - sensor_id: "gh-a-hum-02"
+    name: "Greenhouse A - Humidity"
+    location: "Greenhouse A"
+    sensor_type: "humidity"
+    reporting_interval: 20
 
-  - id: # TODO
-    type: # TODO
-    interval_seconds: # TODO
+  - sensor_id: "gh-b-soil-03"
+    name: "Greenhouse B - Soil Moisture"
+    location: "Greenhouse B"
+    sensor_type: "soil_moisture"
+    reporting_interval: 30
+
+  - sensor_id: "gh-b-light-04"
+    name: "Greenhouse B - Light Level"
+    location: "Greenhouse B"
+    sensor_type: "light"
+    reporting_interval: 25

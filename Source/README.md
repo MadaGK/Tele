@@ -56,7 +56,26 @@ Sessions are tracked via cookies — set on first response, returned by the clie
 
 Connect to `ws://<host>:<port>/live`. Send a JSON subscription message after the upgrade to filter on specific sensor IDs. Frames on this channel are JSON.
 
-## Authors
 
-- TODO: Name 1, Student ID
-- TODO: Name 2, Student ID
+
+## AI GENERATED.......... To view the live readings with a websocket 
+paste this code in power shell
+
+@'
+import asyncio
+import websockets
+
+async def main():
+    async with websockets.connect("ws://127.0.0.1:8765/live") as ws:
+        await ws.send('{"action": "subscribe", "sensors": ["gh-a-temp-01"]}')
+        async for msg in ws:
+            print(msg)
+
+asyncio.run(main())
+'@ | python -
+
+You should see JSON messages stream in for the subscribed sensor ID.
+
+
+## Authors
+Madalitso Kasasi, BSC-COM-NE-17-23
